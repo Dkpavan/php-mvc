@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <?php  echo $this->getChild("head")->toHtml();?>
+    
+    <body>
+        
+        <?php  echo  $this->getChildHtml("header");?>
+        
+        <?php echo $this->getChildHtml('message');?>
+    
+        <?php   echo  $this->getChildHtml("content");?>
+
+        <?php  echo $this->getChildHtml("footer");?>  
+
+</body>
+</html>

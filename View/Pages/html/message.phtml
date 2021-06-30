@@ -1,0 +1,24 @@
+<center>
+    <h4>
+        <?php 
+
+            $message = $this->getMessage();
+
+            if($success = $message->getSuccess()){
+                echo $success;
+                $this->getMessage()->clearSuccess();
+            }
+
+            if($failure = $message->getFailure()){
+                echo $failure;
+                $this->getMessage()->clearFailure();
+            }
+
+            if($notice = $message->getNotice()){
+                echo $notice;
+                $this->getMessage()->clearNotice();
+            }
+
+        ?>
+    </h4>
+</center>
