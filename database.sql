@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 07:42 AM
+-- Generation Time: Jul 01, 2021 at 04:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -167,6 +167,9 @@ CREATE TABLE `product` (
   `status` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `expiryDate` date NOT NULL,
+  `base` tinyint(30) DEFAULT NULL,
+  `thumb` tinyint(30) DEFAULT NULL,
+  `small` tinyint(30) DEFAULT NULL,
   `createdDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -175,12 +178,37 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productId`, `name`, `manufacturer`, `pkd`, `quantity`, `status`, `description`, `expiryDate`, `createdDate`, `updatedDate`) VALUES
-(1, 'moong', 'ddfd', '2021-06-12', 2, 'Enabled', 'This is good for health ', '2021-07-06', '2021-06-03 07:53:42', '2021-06-18 04:59:49'),
-(42, 'Wheati', 'Asirvad', '2021-07-08', 10, 'Enabled', 'very good ', '2021-06-22', '2021-06-24 04:47:25', '2021-06-29 10:09:48'),
-(53, 'Wheat', 'tata', '2021-06-05', 10, 'Enabled', 'good product', '2021-06-20', '2021-06-29 02:51:51', NULL),
-(54, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', '2021-06-29 02:57:03', NULL),
-(56, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', '2021-06-29 02:58:01', '2021-06-29 10:03:45');
+INSERT INTO `product` (`productId`, `name`, `manufacturer`, `pkd`, `quantity`, `status`, `description`, `expiryDate`, `base`, `thumb`, `small`, `createdDate`, `updatedDate`) VALUES
+(1, 'moong', 'ddfd', '2021-06-12', 2, 'Enabled', 'This is good for health ', '2021-07-06', 91, 90, 87, '2021-06-03 07:53:42', '2021-07-01 14:27:03'),
+(42, 'Wheati', 'Asirvad', '2021-07-08', 10, 'Enabled', 'very good ', '2021-06-22', NULL, NULL, NULL, '2021-06-24 04:47:25', '2021-07-01 14:19:56'),
+(53, 'Wheat', 'tata', '2021-06-05', 10, 'Enabled', 'good product', '2021-06-20', NULL, NULL, NULL, '2021-06-29 02:51:51', '2021-07-01 06:15:50'),
+(54, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', NULL, NULL, NULL, '2021-06-29 02:57:03', '2021-06-30 11:33:11'),
+(56, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', NULL, NULL, NULL, '2021-06-29 02:58:01', '2021-06-30 11:32:45'),
+(58, 'Wheat', 'Asirvad', '2021-06-27', 10, 'Enabled', 'good', '2021-07-10', NULL, NULL, NULL, '2021-07-01 09:16:34', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productmedia`
+--
+
+CREATE TABLE `productmedia` (
+  `mediaId` tinyint(10) NOT NULL,
+  `productId` int(10) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `active` varchar(10) NOT NULL,
+  `isGallery` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `productmedia`
+--
+
+INSERT INTO `productmedia` (`mediaId`, `productId`, `label`, `image`, `active`, `isGallery`) VALUES
+(87, 1, '1445404320-9211.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(90, 1, 'download.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(91, 1, '1445404320-9211.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0');
 
 -- --------------------------------------------------------
 
@@ -242,6 +270,13 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`productId`);
 
 --
+-- Indexes for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  ADD PRIMARY KEY (`mediaId`),
+  ADD KEY `productId_to_productId` (`productId`);
+
+--
 -- Indexes for table `shipping`
 --
 ALTER TABLE `shipping`
@@ -279,7 +314,13 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  MODIFY `mediaId` tinyint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `shipping`
@@ -296,6 +337,12 @@ ALTER TABLE `shipping`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_to_customer` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`);
+
+--
+-- Constraints for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  ADD CONSTRAINT `productId_to_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
