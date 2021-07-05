@@ -43,7 +43,7 @@
 <body>
     <div class="container mt-5">
         <h3 class="title mt-2">Category Details</h3>
-        <a href="index.php?c=Category&a=add"><button type="submit" name="submit"
+        <a href="<?php echo $this->getUrl("add");?>"><button type="submit" name="submit"
                 class="btn btn-primary mt-1">Add</button></a>
         <div class="mt-3">
 
@@ -65,6 +65,13 @@
                 </thead>
                 <tbody>
 
+                    <?php if(!$categorys): ?>
+                    <tr>
+                    <td colspan="7">
+                    <center>No Data Found.</center>
+                    </td>
+                    </tr>
+                    <?php else: ?>
                     <?php  foreach($categorys as $category){ ?>
                     <tr>
                         <td><?php echo $category->categoryId; ?></td>
@@ -74,7 +81,7 @@
                         <td><?php echo $category->status; ?></td>
                         <td><?php echo $category->descriprtion; ?></td>
                         <td><?php echo $category->createdDate; ?></td>
-                        <td><a href="?c=Category&a=edit&id=<?php echo $category->categoryId; ?>&name=<?php echo  $category->categoryName ?>"
+                        <td><a href="<?php echo $this->getUrl("edit","category",['id'=>$category->categoryId,'name'=>$category->categoryName]);?>"
                                 class="btn btn-primary">Edit</a>
                             <button type="button" class="btn btn-danger" data-toggle="modal"data-target="#id<?php echo $category->categoryId; ?>">
                             Delete</button>
@@ -94,9 +101,9 @@
                                         Do you really want to delete detailse of categoryId :- <?php echo $category->categoryId; ?>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="?c=Category&a=delete&id=<?php echo $category->categoryId; ?>&delete=all"><button
+                                        <a href="<?php echo $this->getUrl("delete","category",['id'=>$category->categoryId,'delete'=>'all']);?>"><button
                                                 type="submit" name="all" class="btn btn-warning">Delete All</button></a>
-                                        <a href="?c=Category&a=delete&id=<?php echo $category->categoryId; ?>&delete=one"><button
+                                        <a href="<?php echo $this->getUrl("delete","category",['id'=>$category->categoryId,'delete'=>'one']);?>"><button
                                                 type="submit" name="one" class="btn btn-danger">Delete One</button></a>
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>

@@ -33,14 +33,15 @@
 
 <body>
     <?php
-    $category = $this->getCategory();
-    $categorys = $this->getCategories()->getData(); 
-    $statusOptions = $category->getStatusOptions(); ?>
+        $category = $this->getCategory();
+        $categorys = $this->getCategories()->getData(); 
+        $statusOptions = $category->getStatusOptions(); 
+    ?>
     <div class="container mt-5">
         <h1 class="mt-2">Category Details Form</h1>
         <div class="personal data mt-3 ">
             <h3>Category information </h3>
-            <form action="?c=category&a=save&id=<?php echo $category->categoryId; ?>" method="post">
+            <form action="<?php echo $this->getUrl("save","category",['id'=>$category->categoryId]);?>" method="post">
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label for="categotyId">Category </label>
@@ -71,7 +72,7 @@
                 </div>
                         
                 <button type="submit" name="submit" class="btn btn-primary mt-1">Save</button>
-                <a href="?c=category&a=grid" name="submit" class="btn btn-success mt-1">Return</a>
+                <a href="<?php echo $this->getUrl("grid","category",['id'=>$category->categoryId,'name'=>$category->categoryName],true);?>" name="submit" class="btn btn-success mt-1">Return</a>
 
             </form>
         </div>
