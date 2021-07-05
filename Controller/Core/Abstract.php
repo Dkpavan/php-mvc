@@ -3,6 +3,8 @@ Ccc::loadFile("Model/Core/Adapter.php");
 Ccc::loadFile("Model/Core/Request.php");
 Ccc::loadFile("Model/Core/Message.php");
 Ccc::loadFile("Model/Core/Layout.php");
+Ccc::loadFile("Model/Core/Url.php");
+
 
 class Controller_Core_Abstract 
 {
@@ -11,6 +13,7 @@ class Controller_Core_Abstract
     protected $session;
     protected $massage;
     protected $layout;
+    protected $url;
 
     public function setAdapter($adapter)
     {
@@ -67,9 +70,24 @@ class Controller_Core_Abstract
         }
         return $this->layout;
     }
+
     public function renderLayout()
     {
         return $this->getLayout()->renderLayout();
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+        return $this;
+    }
+
+    public function getUrl()
+    {
+        if(!$this->url){
+            $this->url = new Model_Core_Url();
+        }
+        return $this->url;
     }
 
     public function redirect($action , $controller = null)
@@ -77,7 +95,7 @@ class Controller_Core_Abstract
         if(!$controller){
             $controller = $this->getRequest()->getControllerName();
         }
-        header("location:index.php?a={$action}&c={$controller}");
+        header("location:".$this->getUrl()->Url("$action","$controller",[],true)."");
         exit;
     }
 
