@@ -4,7 +4,7 @@
 
 <head>
     <style>
-    body {
+   .container {
         height: 100vh;
         width: 100vw;
     }
@@ -15,8 +15,8 @@
 
     <div class="container mt-5">
         <h3 class="title mt-2">Product Details :</h3>
-        <a href="?c=product&a=add"><button type="submit" name="submit" class="btn btn-primary mt-1">Add</button></a>
-        <div class="mt-3">
+        <a href="<?php echo $this->getUrl("add");?>"><button type="submit" name="submit" class="btn btn-primary mt-1">Add</button></a>
+        <div class="mt-3 table-responsive">
 
             <table class="table table-hover-table-striped table-bordered mt-2 ">
 
@@ -33,6 +33,9 @@
                         <th>Description</th>
                         <th>Entry date</th>
                         <th>Modify date</th>
+                        <th>Base</th>
+                        <th>Thumbnail</th>
+                        <th>Small</th>
                         <th>Action</th>
                         <th>Gallery</th>
                     </tr>
@@ -53,9 +56,12 @@
                         <td><?php echo $product->description; ?></td>
                         <td><?php echo $product->createdDate; ?></td>
                         <td><?php echo $product->updatedDate; ?></td>
-                        <td><a href="?c=Product&a=edit&id=<?php echo $product->productId; ?>" class="btn btn-primary">Edit</a> 
-                        <a href="?c=Product&a=delete&id=<?php echo $product->productId; ?>" class="btn btn-danger mt-1">Delete</a></td>
-                        <td><a href="?c=Media&a=grid" class="btn btn-primary">Media Gallery</a></td>
+                        <td><?php echo $product->base; ?></td>
+                        <td><?php echo $product->thumb; ?></td>
+                        <td><?php echo $product->small; ?></td>
+                        <td><a href="<?php echo $this->getUrl("edit","Product",['id'=>$product->productId]);?>" class="btn btn-primary">Edit</a> 
+                        <a href="<?php echo $this->getUrl("delete","Product",['id'=>$product->productId]);?>" class="btn btn-danger mt-1">Delete</a></td>
+                        <td><a href="<?php echo $this->getUrl("grid","product_media",['id'=>$product->productId]);?>" class="btn btn-primary">Media Gallery</a></td>
                     </tr>
                     <?php  }?>
                 </tbody>

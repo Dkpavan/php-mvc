@@ -39,7 +39,7 @@ $statusOptions = $product->getStatusOptions();
         <h1 class="mt-2">Product Details Form</h1>
         <div class="personal data mt-3 ">
            
-            <form action="?c=product&a=save&id=<?php echo $product->productId;?>" method="post">
+            <form action="<?php echo $this->getUrl("save","product",['id'=>$product->productId]);?>" method="post">
                 <div class="row">
 
                     <div class="form-group col-sm-6">
@@ -86,7 +86,7 @@ $statusOptions = $product->getStatusOptions();
                
 
                 <button type="submit" name="submit" class="btn btn-primary mt-1">Save</button>
-                <a href="?c=product&a=grid" name="submit" class="btn btn-success mt-1">Return</a>
+                <a href="<?php echo $this->getUrl("grid","Product",['id'=>$product->productId],true);?>" name="submit" class="btn btn-success mt-1">Return</a>
             </form>
         </div>
        

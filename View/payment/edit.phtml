@@ -34,7 +34,7 @@ $statusOptions = $payment->getStatusOptions();
     <div class="container mt-5">
         <h2 class="mt-2"> Payment Details Form</h2>
 
-        <form action="?c=payment&a=save&id=<?php echo $payment->methodId; ?>" method="post">
+        <form action="<?php echo $this->getUrl('save','payment',['id'=>$payment->methodId]);?>" method="post">
 
             <div class="row">
                 <div class="form-group col-sm-6">
@@ -65,7 +65,7 @@ $statusOptions = $payment->getStatusOptions();
                     rows="5"><?php echo $payment->description; ?></textarea>
             </div>
             <button type="submit" name="submit" class="btn btn-primary mt-1">Save</button>
-            <a href="?c=payment&a=grid" name="submit" class="btn btn-success mt-1">Return</a>
+            <a href="<?php echo $this->getUrl('grid','payment',['id'=>$payment->methodId],true);?>" name="submit" class="btn btn-success mt-1">Return</a>
         </form>
     </div>
 

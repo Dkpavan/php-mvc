@@ -38,7 +38,7 @@
 ?>
     <div class="container mt-5">
         <h2 class="mt-2">Shipping Details Form</h2>
-            <form action="?c=shipping&a=save&id=<?php echo $shipping->methodId; ?>" method="post">
+            <form action="<?php echo $this->getUrl('save','shipping',['id'=>$shipping->methodId]); ?>" method="post">
                 <div class="form-group col-sm-6">
                     <label for="product">Method name</label>
                     <input type="text" class="form-control" name="shipping[name]"  value="<?php echo $shipping->name ?>" required>
@@ -61,7 +61,7 @@
                     </select>
                 </div>
                     <button type="submit" name="submit" class="btn btn-primary mt-1">Save</button>
-                <a href="?c=shipping&a=grid" name="submit" class="btn btn-success mt-1">Return</a>
+                <a href="<?php echo $this->getUrl('grid','shipping',['id'=>$shipping->methodId],true); ?>" name="submit" class="btn btn-success mt-1">Return</a>
             </form>
     </div>
 
