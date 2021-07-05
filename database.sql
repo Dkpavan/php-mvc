@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2021 at 07:42 AM
+-- Generation Time: Jul 05, 2021 at 06:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -53,11 +53,7 @@ INSERT INTO `address` (`addressId`, `customerId`, `homeName`, `street`, `landmar
 (282, 167, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat'),
 (283, 167, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat'),
 (320, 178, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat'),
-(321, 178, 'om puri', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'surat', 'Gujarat'),
-(322, 179, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat'),
-(323, 179, 'kankai krupa street no- 4/3 dolat-press', 'veraval', 'bus station', 362265, 'veraval', 'Gujarat'),
-(332, 184, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat'),
-(333, 184, 'I-345', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'Varachha Road', 'Gujarat');
+(321, 178, 'om puri', 'resham bhavan L.H.Road surat', 'bus station', 395006, 'surat', 'Gujarat');
 
 -- --------------------------------------------------------
 
@@ -88,10 +84,8 @@ INSERT INTO `category` (`categoryId`, `categoryName`, `parentId`, `pathIds`, `st
 (193, 'panel', 4, '1/4/193', 'Disabled', '', '2021-06-17 12:40:15'),
 (350, 'table', 9, '1/2/9/350', 'Disabled', '', '2021-06-17 12:40:16'),
 (367, 'bed', 2, '1/2/367', 'Enabled', '', '2021-06-17 12:37:54'),
-(391, 'light', 4, '1/4/391', 'Enabled', '', '2021-06-17 12:41:40'),
-(392, 'bed', 0, '392', 'Enabled', '', '2021-06-18 04:27:45'),
-(394, 'light', 395, '1/4/395/394', 'Enabled', '', '2021-06-28 06:24:44'),
-(395, 'bed', 2, '1/2/395', 'Enabled', '', '2021-06-28 06:54:38');
+(418, 'light', 0, '418', 'Enabled', '', '2021-07-05 04:12:31'),
+(419, 'home', 418, '418/419', 'Enabled', '', '2021-07-05 04:12:37');
 
 -- --------------------------------------------------------
 
@@ -123,9 +117,8 @@ INSERT INTO `customer` (`customerId`, `shippingAddressId`, `billingAddressId`, `
 (166, 281, 280, 'khushi', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-07-05', 'female', '2021-06-17 09:49:43', '2021-06-17 06:20:00'),
 (167, 283, 282, 'Pavan', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-06-29', 'female', '2021-06-28 03:38:32', '2021-06-28 06:06:44'),
 (178, 321, 320, 'raju fca', 'panwala', 'abc@gmail.com', 2147483647, '2021-06-23', 'male', '2021-06-28 08:25:07', '2021-06-28 08:25:25'),
-(179, 323, 322, 'Pavan', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-06-30', 'male', '2021-06-28 08:44:42', '2021-06-28 08:45:50'),
-(183, 331, 330, 'verali', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-06-24', 'female', '2021-06-28 08:54:20', '2021-06-28 09:11:50'),
-(184, 333, 332, 'ruchi', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-07-02', 'male', '2021-06-29 09:57:06', '2021-06-29 10:00:58');
+(189, NULL, NULL, 'Pavan cjshcjhcszm czsczzxzx', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-07-01', 'male', '2021-07-02 05:54:27', NULL),
+(190, NULL, NULL, 'Pavan cjshcjhcszm czsczzxzx', 'Dolariya', 'abc@gmail.com', 2147483647, '2021-07-01', 'male', '2021-07-02 05:54:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -147,10 +140,10 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`methodId`, `name`, `description`, `status`, `createdDate`, `transactionId`) VALUES
-(6, 'Credit ', 'credit card Payment', 'Disabled', '2021-06-11 12:52:26', 25617),
+(6, 'Credit ', 'credit card Payment', 'Enabled', '2021-06-11 12:52:26', 25617),
 (7, 'Google Pay', 'Google Pay  payment', 'Disable', '2021-06-11 13:40:23', 135489),
 (8, 'Credit card', 'very good product', 'Enabled', '2021-06-17 10:15:41', 215115241),
-(9, 'Debit card', 'Debit card is easy way to payment', 'Disabled', '2021-06-17 10:18:08', 841351);
+(9, 'Debit card', 'Debit card is easy way to payment', 'Enabled', '2021-06-17 10:18:08', 841351);
 
 -- --------------------------------------------------------
 
@@ -167,6 +160,9 @@ CREATE TABLE `product` (
   `status` varchar(20) NOT NULL,
   `description` varchar(255) NOT NULL,
   `expiryDate` date NOT NULL,
+  `base` tinyint(30) DEFAULT NULL,
+  `thumb` tinyint(30) DEFAULT NULL,
+  `small` tinyint(30) DEFAULT NULL,
   `createdDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -175,12 +171,41 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productId`, `name`, `manufacturer`, `pkd`, `quantity`, `status`, `description`, `expiryDate`, `createdDate`, `updatedDate`) VALUES
-(1, 'moong', 'ddfd', '2021-06-12', 2, 'Enabled', 'This is good for health ', '2021-07-06', '2021-06-03 07:53:42', '2021-06-18 04:59:49'),
-(42, 'Wheati', 'Asirvad', '2021-07-08', 10, 'Enabled', 'very good ', '2021-06-22', '2021-06-24 04:47:25', '2021-06-29 10:09:48'),
-(53, 'Wheat', 'tata', '2021-06-05', 10, 'Enabled', 'good product', '2021-06-20', '2021-06-29 02:51:51', NULL),
-(54, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', '2021-06-29 02:57:03', NULL),
-(56, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', '2021-06-29 02:58:01', '2021-06-29 10:03:45');
+INSERT INTO `product` (`productId`, `name`, `manufacturer`, `pkd`, `quantity`, `status`, `description`, `expiryDate`, `base`, `thumb`, `small`, `createdDate`, `updatedDate`) VALUES
+(1, 'moong', 'ddfd', '2021-06-12', 2, 'Disabled', 'This is good for health ', '2021-07-06', 91, 90, 87, '2021-06-03 07:53:42', '2021-07-02 04:14:38'),
+(42, 'Wheati', 'Asirvad', '2021-07-08', 10, 'Enabled', 'very good ', '2021-06-22', NULL, NULL, NULL, '2021-06-24 04:47:25', '2021-07-01 14:19:56'),
+(53, 'Wheat', 'tata', '2021-06-05', 10, 'Enabled', 'good product', '2021-06-20', NULL, NULL, NULL, '2021-06-29 02:51:51', '2021-07-01 06:15:50'),
+(54, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', NULL, NULL, NULL, '2021-06-29 02:57:03', '2021-06-30 11:33:11'),
+(56, 'Udad', 'tata', '2021-06-03', 2, 'Enabled', 'very good product', '2021-06-07', NULL, NULL, NULL, '2021-06-29 02:58:01', '2021-06-30 11:32:45'),
+(58, 'Wheat', 'Asirvad', '2021-06-27', 10, 'Enabled', 'good', '2021-07-10', NULL, NULL, NULL, '2021-07-01 09:16:34', NULL),
+(59, 'moth', 'ramdas pvt', '2021-07-11', 2, 'Disabled', 'good ', '2021-07-24', 98, 97, 96, '2021-07-02 04:17:56', '2021-07-02 07:56:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productmedia`
+--
+
+CREATE TABLE `productmedia` (
+  `mediaId` tinyint(10) NOT NULL,
+  `productId` int(10) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `image` varchar(50) NOT NULL,
+  `active` varchar(10) NOT NULL,
+  `isGallery` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `productmedia`
+--
+
+INSERT INTO `productmedia` (`mediaId`, `productId`, `label`, `image`, `active`, `isGallery`) VALUES
+(87, 1, '1445404320-9211.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(90, 1, 'download.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(91, 1, '1445404320-9211.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(96, 59, '1445404320-9211.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(97, 59, '2112649307_d85684f1b1_b.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0'),
+(98, 59, 'download5.jpg', 'media/catalog/product/1445404320-9211.jpg', '', '0');
 
 -- --------------------------------------------------------
 
@@ -242,6 +267,13 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`productId`);
 
 --
+-- Indexes for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  ADD PRIMARY KEY (`mediaId`),
+  ADD KEY `productId_to_productId` (`productId`);
+
+--
 -- Indexes for table `shipping`
 --
 ALTER TABLE `shipping`
@@ -255,37 +287,43 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `addressId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=334;
+  MODIFY `addressId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=397;
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=420;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+  MODIFY `customerId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `methodId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `methodId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  MODIFY `mediaId` tinyint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `shipping`
 --
 ALTER TABLE `shipping`
-  MODIFY `methodId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `methodId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -296,6 +334,12 @@ ALTER TABLE `shipping`
 --
 ALTER TABLE `address`
   ADD CONSTRAINT `address_to_customer` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerId`);
+
+--
+-- Constraints for table `productmedia`
+--
+ALTER TABLE `productmedia`
+  ADD CONSTRAINT `productId_to_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
