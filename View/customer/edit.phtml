@@ -47,7 +47,7 @@
         <div class="personal data mt-3 ">
         <h1>Customer Form</h1>
             <h3>Personal information </h3>
-            <form action="?c=Customer&a=save&id=<?php echo $customer->customerId; ?>" method="post">
+            <form action="<?php echo $this->getUrl('save','customer',['id'=>$customer->customerId]); ?>" method="post">
                
                 <div class="row">
                     <div class="form-group col-sm-6">
@@ -193,7 +193,7 @@
         <?php if( $customer->customerId != null){ ?>
         <button type="button" id="button" class="btn btn-primary mt-1">Address</button>
         <?php } ?>
-        <a href="?c=customer&a=grid" name="submit" class="btn btn-success mt-1">Return</a>
+        <a href="<?php echo $this->getUrl('grid','customer',['id'=>$customer->customerId],true); ?>" name="submit" class="btn btn-success mt-1">Return</a>
     </form>
 
 
